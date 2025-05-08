@@ -1,8 +1,16 @@
-from lib.linkedlist import LinkedList
+def balik_string(teks):
+    stack = []
 
-ll = LinkedList()
-str = "Hari ini satu Muharam"
-for i in str:
-   ll.push(i)
+    for char in teks:
+        stack.append(char)
 
-ll.display()
+    hasil = ''
+
+    while stack:
+        hasil += stack.pop()
+    return hasil
+ 
+# Program utama
+kalimat = input("Masukkan string yang ingin dibalik: ")
+hasil = balik_string(kalimat)
+print(f"Hasil balik: {hasil}")
