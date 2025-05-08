@@ -16,7 +16,7 @@ while repeat:
    for i, data in option.items():
       print(f'{i}. {data}')
    
-   input_user = int(input("Pilihan (1, 2, 3, atau 4 dan tekan Enter): "))
+   input_user = int(input("Pilihan (1, 2, 3, 4, atau 5 dan tekan Enter): "))
    
    match input_user:
       case 1:
