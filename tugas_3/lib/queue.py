@@ -21,18 +21,26 @@ class Queue:
          self.tail = new_node
    
    def pop(self):
-      if self.head is None:
+      if self.empty():
          print("Antrian sudah kosong")
          return None
-      else:
-         temp = self.head
-         self.head = temp.next
-         return temp.data
-   
-   def display(self):
+
+      temp = self.head
+      self.head = temp.next
+      
+      if self.head is None:
+         self.tail = None
+         
+      return temp.data
+
+   def display(self, delimeter=', '):
+      if self.empty():
+         print("Belum ada data \n")
+         return
+      
       temp = self.head
       while temp:
-         print(temp.data)
+         print(temp.data, end=f'{delimeter if temp.next else "\n"}')
          temp = temp.next
       print()
       
