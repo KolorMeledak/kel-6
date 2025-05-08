@@ -9,8 +9,7 @@ def balik_string(teks):
     while stack:
         hasil += stack.pop()
     return hasil
- 
-# Program utama
+
 kalimat = input("Masukkan string yang ingin dibalik: ")
 hasil = balik_string(kalimat)
 print(f"Hasil balik: {hasil}")
