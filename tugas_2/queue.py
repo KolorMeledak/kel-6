@@ -28,7 +28,7 @@ while True:
 
     elif pilihan == '3':
         if dq: 
-            print(f"Daftar antrian: {'; '.join(dq)}")
+            print(f"Daftar antrian: {', '.join(dq)}")
         else:
             print("Antrian kosong.")
 
