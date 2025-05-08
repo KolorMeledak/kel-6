@@ -11,8 +11,6 @@ option = {
 }
 
 repeat = True
-ll.push("Medan")
-
 while repeat:
    print("Menu:")
    for i, data in option.items():
