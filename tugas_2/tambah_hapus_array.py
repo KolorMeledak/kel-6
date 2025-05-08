@@ -25,11 +25,11 @@ while repeat:
    match input_user:
       case 1:
          print(option[input_user], end='. \n')
-         cities.append(input("Kota: "))
+         cities.append(input("Kota: ").strip())
       case 2:
          print(option[input_user], end='. \n')
          try:
-            cities.remove(input("Kota: "))
+            cities.remove(input("Kota: ").strip())
          except ValueError:
             print("Kota tidak ditemukan")
       case 3:
