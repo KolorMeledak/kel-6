@@ -8,5 +8,3 @@ def decimal_to_hexa(number):
         
     hexa.reverse()
     return ''.join(map(str, hexa))
-
-            
