@@ -12,17 +12,17 @@ while True:
       continue
 
    biner = decimal_to_biner(number)
-   print("Biner: " + biner)
+   print(f"Biner: {biner}")
 
    print()
    
    octal = decimal_to_octal(number)
-   print("Oktal: " + octal)
+   print(f"Oktal: {octal}")
 
    print()
 
    hexa = decimal_to_hexa(number)
-   print("Hexa: " + hexa)
+   print(f"Hexa: {hexa}")
    
    isRepeat = input("Ulang? (y/n): ").lower()
    while isRepeat not in ['y', 'n']:
