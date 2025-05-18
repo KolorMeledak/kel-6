@@ -23,14 +23,21 @@ class LinkedList:
          temp = temp.next
       return count
    
-   def display(self):
+   def display(self, delimeter):
+      if self.empty():
+         print("Belum ada data \n")
+         return
+      
       temp = self.head 
       while temp:
-         print(temp.data,end='') 
+         print(temp.data,end=f'{delimeter if temp.next else "\n"}') 
          temp = temp.next 
       print()
    
    def pop(self):
+      if self.empty():
+         return None
+      
       temp = self.head
       self.head = temp.next
       return temp.data

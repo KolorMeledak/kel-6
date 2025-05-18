@@ -1,7 +1,6 @@
-from lib.queue import Queue
+from lib.linkedlist import LinkedList
 
-queue = Queue()
-
+tumpukan = LinkedList()   
 option = {
    1: 'Tambah Data',
    2: 'Ambil Data',
@@ -20,15 +19,19 @@ while repeat:
    match input_user:
       case 1:
          print(option[input_user], end='. \n')
-         queue.push(input("Masukkan data: ").strip())
+         tumpukan.push(input("Masukkan data: ").strip())
       case 2:
          print(option[input_user], end='. \n')
-         terambil = queue.pop()
+         terambil = tumpukan.pop()
+         if terambil is None:
+            print("Antrian sudah kosong")
+            continue
+         
          print(f"Data '{terambil}' berhasil diambil")
       case 3:
          print(option[input_user], end='. \n')
          print("Isi array:")
-         queue.display(delimeter=', ')
+         tumpukan.display(delimeter=', ')
       case 4:
          print(option[input_user], end='. \n')
          repeat = False

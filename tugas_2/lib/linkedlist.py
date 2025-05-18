@@ -9,6 +9,19 @@ class LinkedList:
         
    def empty(self):
       return self.head == None
+   
+   def search(self, key):
+      if self.empty():
+         return None
+      
+      temp = self.head
+      
+      while temp:
+         if temp.data == key:
+            return temp.data
+         temp = temp.next
+      
+      return None
         
    def push(self, new_data):
       new_node = Node(new_data)
@@ -23,10 +36,14 @@ class LinkedList:
          temp = temp.next
       return count
    
-   def display(self):
+   def display(self, delimeter=''):
+      if self.empty():
+         print("Belum ada data \n")
+         return
+      
       temp = self.head 
       while temp:
-         print(temp.data,end='') 
+         print(temp.data,end=f'{delimeter if temp.next else "\n"}') 
          temp = temp.next 
       print()
    
@@ -34,4 +51,21 @@ class LinkedList:
       temp = self.head
       self.head = temp.next
       return temp.data
+   
+   def delete(self, key):
+      temp = self.head
+      prev = None
       
+      while temp:
+         if temp.data == key:
+            if prev:
+               prev.next = temp.next
+            else:
+               self.head = temp.next
+            temp = None
+            return
+         
+         prev = temp
+         temp = temp.next
+         
+      raise ValueError(f"Data '{key}' tidak ditemukan.")
