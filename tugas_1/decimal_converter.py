@@ -12,11 +12,16 @@ while True:
       continue
 
    biner = decimal_to_biner(number)
-   octal = decimal_to_octal(number)
-   hexa = decimal_to_hexa(number)
-
    print("Biner: " + biner)
+
+   print()
+   
+   octal = decimal_to_octal(number)
    print("Oktal: " + octal)
+
+   print()
+
+   hexa = decimal_to_hexa(number)
    print("Hexa: " + hexa)
    
    isRepeat = input("Ulang? (y/n): ").lower()
