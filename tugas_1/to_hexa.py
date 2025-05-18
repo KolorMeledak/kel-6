@@ -1,5 +1,4 @@
 def decimal_to_hexa(number):
-    integer = int(number)
     hexa = []
 
     while integer > 0:

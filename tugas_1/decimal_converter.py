@@ -4,6 +4,12 @@ from to_oktal import decimal_to_octal
 
 while True:
    number = str(input("Masukkan angka (gunakan angka fixed tanpa koma): "))
+   
+   if number.isnumeric():
+      number = int(number)
+   else:
+      print("Input yang dimasukkan tidak sesuai format.")
+      continue
 
    biner = decimal_to_biner(number)
    octal = decimal_to_octal(number)

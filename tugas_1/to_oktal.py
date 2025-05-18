@@ -1,5 +1,4 @@
 def decimal_to_octal(number):
-    integer = int(number)
     octal = []
 
     while integer > 0:

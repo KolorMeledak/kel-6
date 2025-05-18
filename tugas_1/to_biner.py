@@ -1,5 +1,4 @@
 def decimal_to_biner(number):
-    integer = int(number)
     if integer == 0:
         return "0000"
     
