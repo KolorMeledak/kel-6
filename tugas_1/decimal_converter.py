@@ -3,12 +3,12 @@ from lib.to_hexa import decimal_to_hexa
 from lib.to_oktal import decimal_to_octal
 
 while True:
-   number = str(input("Masukkan angka (gunakan angka fixed tanpa koma): "))
+   number = input("Masukkan angka (gunakan angka fixed tanpa koma): ")
    
-   if number.isnumeric():
-      number = int(number)
-   else:
-      print("Input yang dimasukkan tidak sesuai format.")
+   try:
+      number = float(number)  
+   except ValueError:
+      print("Input tidak valid. Harap masukkan angka yang benar (misalnya: 10 atau 10.5).")
       continue
 
    biner = decimal_to_biner(number)
