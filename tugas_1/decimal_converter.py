@@ -1,6 +1,6 @@
-from to_biner import decimal_to_biner
-from to_hexa import decimal_to_hexa
-from to_oktal import decimal_to_octal
+from lib.to_biner import decimal_to_biner
+from lib.to_hexa import decimal_to_hexa
+from lib.to_oktal import decimal_to_octal
 
 while True:
    number = str(input("Masukkan angka (gunakan angka fixed tanpa koma): "))
