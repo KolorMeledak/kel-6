@@ -7,8 +7,6 @@ while True:
             break
       else:
             print("Limit harus lebih dari 0!")
-    except ValueError:
-            print("Input harus berupa angka ya")
 
 def push(inputName):
       
