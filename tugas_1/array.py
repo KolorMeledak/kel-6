@@ -1,51 +1,57 @@
 stack = []
-limit = 5
+
+while True:
+    try:
+      limit = int(input("Masukkan batas maksimal stack: "))
+      if limit > 0:
+            break
+      else:
+            print("Limit harus lebih dari 0!")
+    except ValueError:
+            print("Input harus berupa angka ya")
 
 def push(inputName):
-   if len(stack) >= limit:
-      print("Antrian Penuh!")
-   else:
-      stack.append(inputName)
-      print(f"{inputName} berhasil ditambah")
+      
+      if len(stack) >= limit:
+            print("Antrian Penuh!")
+      else:
+            stack.append(inputName)
+            print(f"{inputName} berhasil ditambah")
 
 def pop():
    if not stack:
-        print("Stack kosong! Tidak ada nama yang bisa dihapus.")
+      print("Stack kosong! Nggak ada nama yang bisa dihapus.")
    else:
-        nama = stack.pop()
-        print(f"{nama} dihapus dari stack.")
+      nama = stack.pop()
+      print(f"{nama} dihapus dari stack.")
         
 def display():
    if not stack:
-        print("Stack kosong.")
+      print("Stack kosong.")
    else:
-        print("Isi stack:")
-        for i in range(len(stack)-1, -1, -1):
-            print(f"{i+1}. {stack[i]}")
+      print("Isi stack:")
+      for i in reversed(range(len(stack))):
+            print(stack[i])
 
 while True:
    print("\n========= Menu Stack =========")
    print("1. Push (Tambah Nama)")
    print("2. Pop (Hapus Nama Teratas)")
    print("3. Tampilkan Stack")
-   print("4. Update Limit")
-   print("5. Keluar")
+   print("4. Keluar")
     
    pilihan = int(input("Masukkan Opsi: "))
 
-   if pilihan == "1":
+   if pilihan == 1:
+         limit = int(input("Masukkan Maks Data: "))
          nama = input("Masukkan nama: ")
          push(nama)
-   elif pilihan == "2":
+   elif pilihan == 2:
          pop()
-   elif pilihan == "3":
+   elif pilihan == 3:
          display()
-   elif pilihan == "4":
-         inputLimit = int(input("Masukkan Limit Tambahan Baru: "))
-         limit += inputLimit
-         print(f"limit berhasil di update menjadi {limit}")
-   elif pilihan == "5":
+   elif pilihan == 4:
          print("Keluar dari program.")
          break
    else:
-         print("Opsi tidak valid!")
+         print("Pilihan tidak valid!")
