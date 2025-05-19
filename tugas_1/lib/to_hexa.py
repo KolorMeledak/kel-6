@@ -28,20 +28,20 @@ def decimal_float_to_hexa(number: float) -> str:
     precision = 8
     
     # Kalikan dengan 16^8 untuk bisa diolah
-    scaled_number = int(number * (16 ** precision))
+    format_number = int(number * (16 ** precision))
 
     hexa_digits = []
 
-    print("\nProses Konversi Desimal ke Heksadesimal (Manual):")
-    while scaled_number > 0:
-        quotient = scaled_number // 16
-        remainder = scaled_number % 16
+    while format_number > 0:
+        quotient = format_number // 16
+        remainder = format_number % 16
+
+        print(f"{format_number} \t dibagi {16} = {quotient} sisa {remainder}")
 
         digit = decimal_to_hex_digit(remainder)
-        print(f"{scaled_number} \t dibagi {16} = {quotient} sisa {digit}")
-
+        
         hexa_digits.append(digit)
-        scaled_number = quotient
+        format_number = quotient
 
     hexa_digits.reverse()
 

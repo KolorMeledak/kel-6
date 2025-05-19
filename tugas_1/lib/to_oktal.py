@@ -27,18 +27,18 @@ def decimal_float_to_octal(number: float) -> str:
     precision = 8  
 
     # Kalikan dengan 8^8 untuk bisa diolah
-    number_format = int(number * (8 ** precision))
+    format_number = int(number * (8 ** precision))
 
     octal_digits = []
 
-    while number_format > 0:
-        pembagian = number_format // 8
-        sisa = number_format % 8
+    while format_number > 0:
+        pembagian = format_number // 8
+        sisa = format_number % 8
         
-        print(f"{number_format} \t dibagi {8} = {pembagian} sisa {sisa}")
+        print(f"{format_number} \t dibagi {8} = {pembagian} sisa {sisa}")
         
         octal_digits.append(sisa)
-        number_format = pembagian
+        format_number = pembagian
 
     octal_digits.reverse() 
 
