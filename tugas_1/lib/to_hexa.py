@@ -4,7 +4,7 @@ def decimal_to_hexa(number: float|int) -> str:
     if number == 0 or number == 0.0:
         return "0"
 
-    if not float(number).is_integer():
+    if not number.is_integer():
         return decimal_float_to_hexa(number) 
     else:
         number = int(number)
