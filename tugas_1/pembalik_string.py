@@ -16,7 +16,7 @@ while True:
     paragraf = []
 
     while True:
-        baris = input()
+        baris = input().strip()
         if baris == '':
             if paragraf:
                     paragraf_list.append('\n'.join(paragraf))
