@@ -3,7 +3,7 @@ from lib.to_hexa import decimal_to_hexa
 from lib.to_oktal import decimal_to_octal
 
 while True:
-   number = input("Masukkan angka (gunakan angka fixed tanpa koma): ")
+   number = input("Masukkan angka: ")
    
    try:
       number = float(number)  

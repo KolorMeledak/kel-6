@@ -1,4 +1,4 @@
-def decimal_to_hexa(number: float) -> str:
+def decimal_to_hexa(number: float|int) -> str:
     print("Perhitungan Desimal ke Hexa")
     
     if number == 0 or number == 0.0:
@@ -24,18 +24,11 @@ def decimal_to_hexa(number: float) -> str:
     hexa.reverse()
     return ''.join(hexa)
 
-def decimal_to_hex_digit(value: int) -> str:
-    if 0 <= value <= 9:
-        return str(value)
-    elif 10 <= value <= 15:
-        value_hex = chr(ord('A') + (value - 10))
-        print(f"{value} menjadi {value_hex}")
-        return value_hex
-    else:
-        raise ValueError("Digit tidak valid: harus antara 0 sampai 15.")
-
 def decimal_float_to_hexa(number: float) -> str:
-    scaled_number = int(number * (16 ** 8))
+    precision = 8
+    
+    # Kalikan dengan 16^8 untuk bisa diolah
+    scaled_number = int(number * (16 ** precision))
 
     hexa_digits = []
 
@@ -52,11 +45,22 @@ def decimal_float_to_hexa(number: float) -> str:
 
     hexa_digits.reverse()
 
-    total_length = 3 + 8
-    if len(hexa_digits) < total_length:
-        hexa_digits = ['0'] * (total_length - len(hexa_digits)) + hexa_digits
+    if len(hexa_digits) < 3 + precision:
+        hexa_digits = ['0'] * (3 + precision - len(hexa_digits)) + hexa_digits
 
+    # "00ABC" -> "ABC"
     integer_part = ''.join(hexa_digits[:3]).lstrip('0') or '0'
     fractional_part = ''.join(hexa_digits[3:3 + 8])
 
     return f"{integer_part}.{fractional_part}"
+
+
+def decimal_to_hex_digit(value: int) -> str:
+    if 0 <= value <= 9:
+        return str(value)
+    elif 10 <= value <= 15:
+        value_hex = chr(ord('A') + (value - 10))
+        print(f"{value} menjadi {value_hex}")
+        return value_hex
+    else:
+        raise ValueError("Digit tidak valid: harus antara 0 sampai 15.")

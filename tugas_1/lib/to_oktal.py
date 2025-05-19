@@ -1,4 +1,4 @@
-def decimal_to_octal(number):
+def decimal_to_octal(number: float|int) -> str:
     print("Perhitungan Desimal ke Oktal")
     
     if number == 0 or number == 0.0:
@@ -26,7 +26,7 @@ def decimal_to_octal(number):
 def decimal_float_to_octal(number: float) -> str:
     precision = 8  
 
-    # Kalikan dengan 8^8 untuk mengubah ke bilangan bulat penuh
+    # Kalikan dengan 8^8 untuk bisa diolah
     number_format = int(number * (8 ** precision))
 
     octal_digits = []
@@ -47,8 +47,8 @@ def decimal_float_to_octal(number: float) -> str:
     if len(octal_string) < 3 + precision:
         octal_string = octal_string.zfill(3 + precision)
 
-    # bisa kemungkinan part yang diambil 045 -> 45 -> "45"
-    integer_part = str(int(octal_string[:3]))
+    # bila hasil "0045" -> "45"
+    integer_part = octal_string[:3].lstrip("0") or "0"
     # ambil 8 digit terakhir
     fraction_part = octal_string[3:3 + precision]
 

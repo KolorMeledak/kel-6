@@ -1,7 +1,7 @@
-def decimal_to_biner(number):
+def decimal_to_biner(number: float|int) -> str:
     print("Perhitungan Desimal ke Biner")
 
-    number = str(number)  # supaya aman buat split
+    number = str(number)
 
     if number == "0" or number == "0.0":
         return "0000"
