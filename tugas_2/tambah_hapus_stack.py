@@ -2,6 +2,10 @@ from lib.linkedlist import LinkedList
 
 ll = LinkedList()
 
+ll.push("Medan")
+ll.push("Pontianak")
+ll.push("Surabaya")
+
 option = {
    1: 'Tambah Data',
    2: 'Hapus Data',
@@ -21,27 +25,36 @@ while repeat:
    match input_user:
       case 1:
          print(option[input_user], end='. \n')
-         ll.push(input("Kota: ").strip())
+         kota = input("Kota: ").strip()
+         ll.push(kota)
+         ll.sort()  # Ensure the linked list is sorted after each push
       case 2:
          print(option[input_user], end='. \n')
          try:
             inp = input("Kota: ").strip()
+            if inp == '':
+               raise ValueError("Input tidak boleh kosong")
+            if ll.empty():
+               raise ValueError("Linked List kosong")
             ll.delete(inp)
-            print(f"Data '{inp}' berhasil dihapus")
+            print(f"Kota {inp} berhasil dihapus")
          except ValueError as err:
             print(err)
       case 3:
          print(option[input_user], end='. \n')
          inp = input("Kota: ").strip()
+         if inp == '':
+            print("Input tidak boleh kosong")
+            continue
          data = ll.search(inp)
          if data:
-            print("Kota ditemukan:", data)
+            print(f"Kota {inp} ditemukan:")
          else:
             print(f"Kota {inp} tidak ditemukan")
       case 4:
          print(option[input_user], end='. \n')
          print("Isi array:")
-         ll.display(delimeter=', ')
+         ll.display(delimeter=' - ')
       case 5:
          print(option[input_user], end='. \n')
          repeat = False
