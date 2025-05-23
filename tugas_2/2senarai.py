@@ -12,24 +12,27 @@ def program():
     def assign():
         inputan = str(input("Masukkan kode dan nama sesuai dengan ketentuannya (Ex. AF, Aminudin Fikri) = "))
         try:
-            # inisial, nama = inputan.split(",", 1)  # Memisahkan berdasarkan koma
-            inisial, nama = list(map(lambda name: name.strip(), inputan.split(',')))  # Memisahkan berdasarkan koma
+            inisial, nama = list(map(lambda name: name.strip(), inputan.split(','))) 
+            inisial = inisial.upper()
+            
             ll.insert(inisial, nama)
+            print(f"Data {inisial}, {nama} berhasil ditambahkan.")
         except ValueError:
             print("Format salah! Gunakan format: INISIAL, Nama Panjang (Ex. AF, Aminudin Fikri)")
     
     def remove():
         inputan = input("Masukkan kode atau nama yang perlu dihapus: ")
+        inputan = inputan.upper()
         ll.delete(f"{inputan}")
     
     def search():
         inputan = str(input("Masukkan kode atau nama yang ingin dicari = "))
+        inputan = inputan.upper()
         ll.search(f"{inputan}")
         
     ll.display()
 
     retry = True
-
     while retry:
         pilihan = {
         1: 'Tambah Data',
