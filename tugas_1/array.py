@@ -1,12 +1,12 @@
 stack = []
 
-while True:
-    try:
-      limit = int(input("Masukkan batas maksimal stack: "))
-      if limit > 0:
-            break
-      else:
-            print("Limit harus lebih dari 0!")
+# while True:
+#     try:
+#       limit = int(input("Masukkan batas maksimal stack: "))
+#       if limit > 0:
+#             break
+#       else:
+#             print("Limit harus lebih dari 0!")
 
 def push(inputName):
       
