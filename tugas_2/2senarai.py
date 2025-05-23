@@ -25,7 +25,7 @@ def program():
     def remove():
         inputan = input("Masukkan kode yang perlu dihapus: ")
         inputan = inputan.upper()
-        isDelete =ll.delete(f"{inputan}")
+        isDelete = ll.delete(f"{inputan}")
         
         if isDelete is None:
             print(f"Data {inputan} tidak ditemukan.")
