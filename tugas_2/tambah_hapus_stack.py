@@ -48,7 +48,7 @@ while repeat:
             continue
          data = ll.search(inp)
          if data:
-            print(f"Kota {inp} ditemukan:")
+            print(f"Kota {inp} ditemukan")
          else:
             print(f"Kota {inp} tidak ditemukan")
       case 4:
