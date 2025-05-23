@@ -1,17 +1,55 @@
 stack = []
 
-input = "Indah Putri Cahaya Lestari            , Aminudin, Bahtiar, Cita, Dul, Engel, Farah, Galih, Ambar, Kevin"
-# input = str(input("Masukkan nama (beri koma untuk memisahkan): "))
-limit = 5
+while True:
+    try:
+      limit = int(input("Masukkan batas maksimal stack: "))
+      if limit > 0:
+            break
+      else:
+            print("Limit harus lebih dari 0!")
 
-input = list(map(lambda name: name.strip(), input.split(', ')))
-stack = input[:limit]
+def push(inputName):
+      
+      if len(stack) >= limit:
+            print("Antrian Penuh!")
+      else:
+            stack.append(inputName)
+            print(f"{inputName} berhasil ditambah")
 
-stack_over = input[limit:]
+def pop():
+   if not stack:
+      print("Stack kosong! Nggak ada nama yang bisa dihapus.")
+   else:
+      nama = stack.pop()
+      print(f"{nama} dihapus dari stack.")
+        
+def display():
+   if not stack:
+      print("Stack kosong.")
+   else:
+      print("Isi stack:")
+      for i in reversed(range(len(stack))):
+            print(stack[i])
 
-if len(stack_over) > 0: 
-   print("Antrian penuh.")
-   for name in stack_over:
-      print(f'{name} tidak dimasukkan.')
+while True:
+   print("\n========= Menu Stack =========")
+   print("1. Push (Tambah Nama)")
+   print("2. Pop (Hapus Nama Teratas)")
+   print("3. Tampilkan Stack")
+   print("4. Keluar")
+    
+   pilihan = int(input("Masukkan Opsi: "))
 
-print(stack)
+   if pilihan == 1:
+         limit = int(input("Masukkan Maks Data: "))
+         nama = input("Masukkan nama: ")
+         push(nama)
+   elif pilihan == 2:
+         pop()
+   elif pilihan == 3:
+         display()
+   elif pilihan == 4:
+         print("Keluar dari program.")
+         break
+   else:
+         print("Pilihan tidak valid!")
