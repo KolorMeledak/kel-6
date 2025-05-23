@@ -28,7 +28,7 @@ while repeat:
     # Proses pop hingga error
     cek = True
     while cek:
-        print("\nProses pop:")
+        print("\nMelakukan proses pop hingga error")
         
         data_input = input("Masukkan nama yang ingin dihapus: ")
         try:
