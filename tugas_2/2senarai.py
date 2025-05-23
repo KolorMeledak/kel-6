@@ -19,16 +19,32 @@ def program():
             print(f"Data {inisial}, {nama} berhasil ditambahkan.")
         except ValueError:
             print("Format salah! Gunakan format: INISIAL, Nama Panjang (Ex. AF, Aminudin Fikri)")
+        
+        print()
     
     def remove():
-        inputan = input("Masukkan kode atau nama yang perlu dihapus: ")
+        inputan = input("Masukkan kode yang perlu dihapus: ")
         inputan = inputan.upper()
-        ll.delete(f"{inputan}")
+        isDelete =ll.delete(f"{inputan}")
+        
+        if isDelete is None:
+            print(f"Data {inputan} tidak ditemukan.")
+        else:
+            print(f"Data {inputan} berhasil dihapus.")
+        
+        print()
     
     def search():
-        inputan = str(input("Masukkan kode atau nama yang ingin dicari = "))
+        inputan = str(input("Masukkan kode yang ingin dicari = "))
         inputan = inputan.upper()
-        ll.search(f"{inputan}")
+        
+        data =ll.search(f"{inputan}")
+        if data is not None:
+            print(f"Data ditemukan: {data.kode} = {data.nama}")
+        else:
+            print(f"Data {inputan} tidak ditemukan.")
+        
+        print()
         
     ll.display()
 
@@ -61,8 +77,11 @@ def program():
                 search()
             case 4:
                 ll.display()
+                print()
             case 5:
                 retry = False
+            case _:
+                print("Pilihan tidak tersedia", end='\n\n')
                 
 if __name__ == "__main__":
     program()
