@@ -6,13 +6,14 @@ class Node:
         
 class LinkedList: 
     def __init__(self):
-        self.head = None #head for the first node
+        self.head = None
         
     def insert(self, kode, nama):
         new_node = Node(kode, nama)
         if self.head is None:
             self.head = new_node
             return 
+        
         temp = self.head
         while temp.next:
             temp = temp.next 

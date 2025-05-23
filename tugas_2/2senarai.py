@@ -65,7 +65,7 @@ def program():
         
         option = int(input("Pilih salah satu dari pilihan tersedia (1/2/3/4/5) "))
         
-        match option :
+        match option:
             case 1:
                 print(pilihan[option], end='. \n')
                 assign()
@@ -85,4 +85,3 @@ def program():
                 
 if __name__ == "__main__":
     program()
-    
