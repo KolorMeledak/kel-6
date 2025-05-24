@@ -60,4 +60,4 @@ class LinkedList:
         prev.next = temp.next
         temp = None 
         print(f"Data {key} berhasil dihapus")
-        return 
+        return

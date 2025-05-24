@@ -17,7 +17,7 @@ class LinkedList:
       temp = self.head
       
       while temp:
-         if temp.data == key:
+         if temp.data.lower() == key:
             return temp.data
          temp = temp.next
       
@@ -52,12 +52,25 @@ class LinkedList:
       self.head = temp.next
       return temp.data
    
+   def sort(self):
+      if self.empty():
+         return
+      
+      current = self.head
+      while current:
+         index = current.next
+         while index:
+            if current.data > index.data:
+               current.data, index.data = index.data, current.data
+            index = index.next
+         current = current.next
+         
    def delete(self, key):
       temp = self.head
       prev = None
       
       while temp:
-         if temp.data == key:
+         if temp.data.lower() == key:
             if prev:
                prev.next = temp.next
             else:

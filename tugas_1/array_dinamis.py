@@ -26,19 +26,34 @@ while repeat:
         print(item, end='\n')
 
     # Proses pop hingga error
-    print("\nProses pop:")
-
-    i = 1
-    while True:
+    cek = True
+    while cek:
+        print("\nMelakukan proses pop hingga error")
+        
+        data_input = input("Masukkan nama yang ingin dihapus: ")
         try:
-            print(f"Pop ke ({i}): {stack.pop()}")
-            i += 1
-        #bagian ini untuk menangani error jika stack kosong
-        except IndexError:
-            print("Stack kosong, tidak ada yang bisa di pop.")
-            print("*error* (stack kosong)")
-            break
-    
+            if data_input == '':
+                raise ValueError("Input tidak boleh kosong")
+            if not stack:
+                raise ValueError("Stack kosong")
+            if data_input not in stack:
+                raise ValueError(f"Data '{data_input}' tidak ditemukan dalam stack.")
+            if data_input != stack[-1]:
+                raise ValueError(f"Data '{data_input}' bukan data teratas dalam stack.")
+            else:
+                stack.remove(data_input)
+                
+            print(f"{data_input} berhasil dihapus")
+        except ValueError as err:   
+            print(err)
+            print("Ulangi lagi? (y/n): ", end='')
+            ulang = input().strip().lower()
+            if ulang == 'y':
+                continue
+            else:
+                cek = False
+                break
+        
     repeat = input("\nUlang apa kagak woi !?!??! (y/n): ").strip().lower() == 'y'
     if not repeat:
         print("Terima kasih telah menggunakan program ini.")
