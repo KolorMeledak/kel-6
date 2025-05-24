@@ -23,7 +23,7 @@ class LinkedList:
          temp = temp.next
       return count
    
-   def display(self, delimeter):
+   def display(self, delimeter=''):
       if self.empty():
          print("Belum ada data \n")
          return
