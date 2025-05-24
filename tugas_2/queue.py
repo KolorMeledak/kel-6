@@ -1,6 +1,6 @@
 from collections import deque
 
-dq = deque([])
+list_antrian = deque([])
 
 while True:
     try:
@@ -21,23 +21,30 @@ while True:
     pilihan = input("Pilih menu (1-4): ")
 
     if pilihan == '1':
-        if len(dq) < limit:
-            nama = input("Masukkan nama: ").strip()
-            dq.append(nama)
-            print(f"{nama} berhasil ditambahkan ke antrian.")
+        if len(list_antrian) < limit:
+            while len(list_antrian) < limit:
+                nama = input("Masukkan nama (atau langsung tekan enter untuk berhenti): ").strip()
+                if nama.lower() == '':
+                    print("Input selesai.")
+                    break
+                list_antrian.append(nama)
+                print(f"{nama} berhasil ditambahkan ke antrian.\n")
+                
+            if len(list_antrian) >= limit:
+                print("Antrian sudah penuh.")
         else:
             print("Antrian penuh.")
 
     elif pilihan == '2':
-        if dq:
+        if list_antrian:
             print("\nDaftar antrian :")
-            for nama in dq:
+            for nama in list_antrian:
                 print(nama)
             nama_hapus = input("Masukkan nama yang ingin dihapus: ").strip().lower()
-            if dq[0].lower() == nama_hapus:
-                dq.popleft()
+            if list_antrian[0].lower() == nama_hapus:
+                list_antrian.popleft()
                 print(f"{nama_hapus} telah keluar dari antrian.")
-            elif nama_hapus in dq:
+            elif nama_hapus in list_antrian:
                 print(f"Tidak bisa menghapus {nama_hapus}, karena bukan antrian paling depan.")
             else:
                 print(f"{nama_hapus} tidak ada dalam antrian.")
@@ -45,9 +52,9 @@ while True:
             print("Antrian kosong.")
 
     elif pilihan == '3':
-        if dq: 
+        if list_antrian: 
             print("\nDaftar antrian :")
-            for nama in dq:
+            for nama in list_antrian:
                 print(nama)
         else:
             print("Antrian kosong.")
