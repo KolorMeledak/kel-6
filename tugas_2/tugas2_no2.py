@@ -1,6 +1,14 @@
+def bubble_sort_cities(data):
+   n = len(data)
+   for i in range(n - 1):
+      for j in range(n - i - 1):
+         if data[j] > data[j + 1]: 
+            data[j], data[j + 1] = data[j + 1], data[j]
+   return data 
+
 def print_cities():
-   for i, data in enumerate(cities):
-      print(data, end=f'{i+1 < len(cities) and " - " or "\n"}')
+   sorted_cities = bubble_sort_cities(cities) 
+   print(" - ".join(sorted_cities)) 
 
 cities = ['Medan', 'Pontianak', 'Surabaya']
 
