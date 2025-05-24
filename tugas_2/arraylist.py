@@ -52,6 +52,19 @@ def display(list,delimeter =' - '):
         print("Terjadi kesalahan saat menampilkan list")
     return list
 
+def display_urut(list, delimeter=' - '):
+    try:
+        if len(list) == 0:
+            print("List kosong")
+        else:
+            print("Isi list:")
+            list_urut = list.sort()
+            print(delimeter.join(list_urut))
+    except Exception as e:
+        print(f"Terjadi kesalahan: {e}")
+        print("Terjadi kesalahan saat menampilkan list")
+    return list
+
 kota_list = ['Medan', 'Pontianak', 'Surabaya']
 
 # Main program
@@ -91,6 +104,19 @@ while True:
         case 4:
             print(option[pilihan], end='. \n')
             display(kota_list)
+            opsi= {
+                1: 'Pengurutan sesuai alfabet',
+                2: 'Pengurutan sesuai antrian input'
+            }
+            for i, data in opsi.items():
+                print(f'{i}. {data}')
+            match input("Pilih metode pengurutan (1/2): "):
+                case '1':
+                    display_urut(kota_list)
+                case '2':
+                    display(kota_list)
+                case _:
+                    print("Pilihan tidak valid")
         case 5:
             print(option[pilihan], end='. \n')
             break
