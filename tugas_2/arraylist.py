@@ -57,8 +57,8 @@ def display_urut(list, delimeter=' - '):
         if len(list) == 0:
             print("List kosong")
         else:
-            print("Isi list:")
-            list_urut = list.sort()
+            print("Isi list (terurut):")
+            list_urut = sorted(list)
             print(delimeter.join(list_urut))
     except Exception as e:
         print(f"Terjadi kesalahan: {e}")
@@ -102,8 +102,6 @@ while True:
             kota = input("Kota: ").strip()
             search(kota_list, kota)
         case 4:
-            print(option[pilihan], end='. \n')
-            display(kota_list)
             opsi= {
                 1: 'Pengurutan sesuai alfabet',
                 2: 'Pengurutan sesuai antrian input'
