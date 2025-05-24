@@ -1,25 +1,19 @@
 from lib.linked import LinkedList
 
 ll = LinkedList()
-ll.insert("AMN", "Aminudin")
-ll.insert("ZAS","Zaskia")
-ll.insert("RIN", "Rina Melati")
-ll.insert("FAR", "Farhan")
-ll.insert("AGN", "Agnes Monica")
-
 
 def assign():
-    inputan = str(input("Masukkan kode dan nama sesuai dengan ketentuannya (Ex. AF, Aminudin Fikri) = "))
+    inputan = str(input("Masukkan kode dan nama sesuai dengan ketentuannya (Ex: AF, Aminudin Fikri) = "))
     try:
         inisial, nama = list(map(lambda name: name.strip(), inputan.split(','))) 
         inisial = inisial.upper()
         
         ll.insert(inisial, nama)
         print(f"Data {inisial}, {nama} berhasil ditambahkan.")
+        return
     except ValueError:
         print("Format salah! Gunakan format: INISIAL, Nama Panjang (Ex. AF, Aminudin Fikri)")
-    
-    print()
+        return
 
 def remove():
     inputan = input("Masukkan kode yang perlu dihapus: ")
@@ -28,11 +22,11 @@ def remove():
     
     if isDelete is None:
         print(f"Data {inputan} tidak ditemukan.")
+        return
     else:
         print(f"Data {inputan} berhasil dihapus.")
+        return
     
-    print()
-
 def search():
     inputan = str(input("Masukkan kode yang ingin dicari = "))
     inputan = inputan.upper()
@@ -40,10 +34,10 @@ def search():
     data =ll.search(f"{inputan}")
     if data is not None:
         print(f"Data ditemukan: {data.kode} = {data.nama}")
+        return
     else:
         print(f"Data {inputan} tidak ditemukan.")
-    
-    print()
+        return
     
 ll.display()
 
@@ -68,14 +62,22 @@ while retry:
         case 1:
             print(pilihan[option], end='. \n')
             assign()
+            print()
         case 2:
             print(pilihan[option], end='. \n')
             remove()
+            print()
         case 3:
             print(pilihan[option], end='. \n')
             search()
+            print()
         case 4:
-            ll.display()
+            data = ll.display()
+            if data is not None:
+                print()
+                continue
+                
+            print("Linked List masih kosong")
             print()
         case 5:
             retry = False

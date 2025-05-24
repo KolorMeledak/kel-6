@@ -12,17 +12,23 @@ class LinkedList:
         new_node = Node(kode, nama)
         if self.head is None:
             self.head = new_node
-            return 
+            return True
+        
         temp = self.head
         while temp.next:
             temp = temp.next 
         temp.next = new_node
+        return True
 
     def display(self):
+        if self.head is None:
+            return None
+        
         temp = self.head 
         while temp: 
             print(f"{temp.kode} = {temp.nama}")
             temp = temp.next
+            return True
         
     def search(self, key):
         temp = self.head
@@ -30,34 +36,23 @@ class LinkedList:
 
         while temp:
             if temp.kode == key or temp.nama == key:
-                print("\nData ditemukan:")
-                print(f"{temp.kode} = {temp.nama}")
-                found = True
+                return temp
             temp = temp.next
 
         if not found:
-            print(f"Data '{key}' tidak ditemukan.")
+            return None
 
 
     def delete(self, key):
         temp = self.head
-        prev = None
         
         if temp and (temp.kode == key or temp.nama == key):
             self.head = temp.next
             temp = None
-            print(f"Data {key} berhasil dihapus")
-            return
+            return True
         
         while temp and (temp.kode != key and temp.nama != key):
-            prev = temp
             temp = temp.next
         
         if temp is None:
-            print(f"Data {key} tidak ditemukan")
-            return 
-        
-        prev.next = temp.next
-        temp = None 
-        print(f"Data {key} berhasil dihapus")
-        return
+            return None
