@@ -2,7 +2,7 @@ kota_list = []
 
 def add(list, item):
     try:
-        if any(i.lower() == item.lower() for i in list):
+        if any(i == item for i in list):
             print(f"{item} sudah ada di dalam list")
             return list
         if item == "":
@@ -18,7 +18,7 @@ def add(list, item):
 def remove(list, item):
     try:
         for i in list:
-            if i.lower() == item.lower():
+            if i == item:
                 list.remove(i)
                 print(f"{item} berhasil dihapus")
                 break
@@ -31,7 +31,7 @@ def remove(list, item):
 
 def search(list, item):
     try:
-        if any(i.lower() == item.lower() for i in list):
+        if any(i== item for i in list):
             print(f"{item} ditemukan di dalam list")
         else:
             print(f"{item} tidak ditemukan di dalam list")
