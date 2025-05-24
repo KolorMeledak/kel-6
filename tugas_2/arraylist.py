@@ -52,6 +52,8 @@ def display(list,delimeter =' - '):
         print("Terjadi kesalahan saat menampilkan list")
     return list
 
+kota_list = ['Medan', 'Pontianak', 'Surabaya']
+
 # Main program
 while True:
     option = {
