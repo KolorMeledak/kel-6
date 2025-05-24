@@ -17,13 +17,17 @@ def add(list, item):
 
 def remove(list, item):
     try:
-        for i in list:
-            if i.lower() == item.lower():
-                list.remove(i)
-                print(f"{item} berhasil dihapus")
-                break
+        # Pastikan list sudah terurut abjad
+        list.sort(key=lambda x: x.lower())
+        if len(list) == 0:
+            print("List kosong")
+            return list
+        # Hanya bisa hapus jika item adalah elemen pertama (paling awal)
+        if list[0].lower() == item.lower():
+            list.pop(0)
+            print(f"{item} berhasil dihapus dari antrian (paling awal)")
         else:
-            print(f"{item} tidak ditemukan di dalam list")
+            print(f"{item} tidak dapat dihapus karena bukan elemen paling awal dalam antrian")
     except Exception as e:
         print(f"Terjadi kesalahan: {e}")
         print("Terjadi kesalahan saat menghapus item")
