@@ -1,9 +1,6 @@
 import ast
 from lib.linkedlistPostfix import PostfixConverter
-from lib.linkedlistPostfix import LinkedListPostfix
 
-
-expr = LinkedListPostfix()
 
 def to_postfix(expr):
     tree = ast.parse(expr, mode='eval')
