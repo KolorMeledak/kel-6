@@ -1,21 +1,30 @@
 repeat = True
-def ascending(list):
-    for i in range(len(list)):
-        min_idx = i
-        for j in range(i+1, len(list)):
-            if list[j] < list[min_idx]:
-                min_idx = j
-        list[i], list[min_idx] = list[min_idx], list[i]
-    return list
+
 def descending(list):
-    for i in range(len(list)):
-        max_idx = i
-        for j in range(i+1, len(list)):
-            if list[j] > list[max_idx]:
-                max_idx = j
-        list[i], list[max_idx] = list[max_idx], list[i]
-    return list
- 
+    a = arr.copy()
+    n = len(a)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if a[min_idx] < a[j]:
+                min_idx = j
+        a[i], a[min_idx] = a[min_idx], a[i]
+        print(f"Langkah {i}: {a}")
+    print(f"Hasil akhir Selection Sort: {a}")
+
+def ascending(arr):
+    print("\nProses Selection Sort:")
+    a = arr.copy()
+    n = len(a)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if a[min_idx] > a[j]:
+                min_idx = j
+        a[i], a[min_idx] = a[min_idx], a[i]
+        print(f"Langkah {i}: {a}")
+    print(f"Hasil akhir Selection Sort: {a}")
+
 while repeat:
     print("===========Selection Sort===========")
     try:
