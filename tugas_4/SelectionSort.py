@@ -1,6 +1,5 @@
-repeat = True
-
-def descending(list):
+def descending(arr):
+    print("\nProses Selection Sort (descending):")
     a = arr.copy()
     n = len(a)
     for i in range(n):
@@ -13,7 +12,7 @@ def descending(list):
     print(f"Hasil akhir Selection Sort: {a}")
 
 def ascending(arr):
-    print("\nProses Selection Sort:")
+    print("\nProses Selection Sort (ascending):")
     a = arr.copy()
     n = len(a)
     for i in range(n):
@@ -25,6 +24,7 @@ def ascending(arr):
         print(f"Langkah {i}: {a}")
     print(f"Hasil akhir Selection Sort: {a}")
 
+repeat = True
 while repeat:
     print("===========Selection Sort===========")
     try:
@@ -33,26 +33,35 @@ while repeat:
     except ValueError:
         print("Input tidak valid. Silakan masukkan angka yang benar.")
         continue
+    
     option = {
         1: 'Pengurutan Naik',
         2: 'Pengurutan Turun'
     }
+    
     print("Pilih metode pengurutan:")
     for i, opt in option.items():
         print(f"{i}. {opt}")
-    choice = input("Masukkan pilihan (1/2): ").strip()
-    print("Hasil pengurutan:", arr)
-    match choice:
-        case '1':
-            ascending(arr)
-        case '2':
-            descending(arr)
-        case _:
+    
+    while True:
+        choice = input("Masukkan pilihan (1/2): ").strip()
+        print("Data sebelum diurutkan:", arr)
+        match choice:
+            case '1':
+                ascending(arr)
+                break
+            case '2':
+                descending(arr)
+                break
+            case _:
+                print("Pilihan tidak valid. Silakan coba lagi.")
+    
+    while True:
+        choose = input("Apakah anda ingin mengulang kembali? (y/n): ").strip().lower()
+        if choose == 'y':
+            break
+        elif choose == 'n':
+            repeat = False
+            break
+        else:
             print("Pilihan tidak valid. Silakan coba lagi.")
-            continue
-
-    
-    
-    choose = input("Apakah anda ingin mengulang kembali? (y/n): ").strip().lower()
-    if choose != 'y':
-        repeat = False
