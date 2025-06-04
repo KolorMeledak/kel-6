@@ -54,4 +54,5 @@ while repeat:
     
     choose = input("Apakah anda ingin mengulang kembali? (y/n): ").strip().lower()
     if choose != 'y':
+        print("Terima Kasih!, Program Dihentikan.")
         repeat = False
