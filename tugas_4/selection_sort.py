@@ -9,7 +9,16 @@ def descending(arr):
                 min_idx = j
         a[i], a[min_idx] = a[min_idx], a[i]
         print(f"Langkah {i}: {a}")
-    print(f"Hasil akhir Selection Sort: {a}")
+    print(f"Hasil akhir Selection Sort: {[int(n) for n in a if n.is_integer()]}")
+    
+    formatted_result = []
+    for num in a:
+        if num.is_integer():
+            formatted_result.append(str(int(num)))  # Convert to int, then to string
+        else:
+            formatted_result.append(str(num))  # Keep as float, then to string
+    print(f"Hasil akhir Selection Sort (formatted): {formatted_result}")
+    return formatted_result
 
 def ascending(arr):
     print("\nProses Selection Sort (ascending):")
@@ -24,12 +33,23 @@ def ascending(arr):
         print(f"Langkah {i}: {a}")
     print(f"Hasil akhir Selection Sort: {a}")
 
+    formatted_result = []
+    for num in a:
+        if num.is_integer():
+            formatted_result.append(str(int(num)))  # Convert to int, then to string
+        else:
+            formatted_result.append(str(num))  # Keep as float, then to string
+    print(f"Hasil akhir Selection Sort (formatted): {formatted_result}")
+    return formatted_result
+
+
 repeat = True
+
 while repeat:
     print("===========Selection Sort===========")
     try:
         arr = input("Masukkan angka yang ingin diurutkan (pisahkan dengan spasi): ")
-        arr = list(map(int, arr.split()))
+        arr = list(map(float, arr.split()))
     except ValueError:
         print("Input tidak valid. Silakan masukkan angka yang benar.")
         continue
