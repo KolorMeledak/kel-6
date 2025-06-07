@@ -1,3 +1,13 @@
+def formatted_selection_sort(arr):
+    formatted_result = []
+    for num in arr:
+        if num.is_integer():
+            formatted_result.append(str(int(num)))  # Convert to int, then to string
+        else:
+            formatted_result.append(str(num))  # Keep as float, then to string
+    print(f"Hasil akhir Selection Sort (formatted): {formatted_result}")
+    return formatted_result
+
 def descending(arr):
     print("\nProses Selection Sort (descending):")
     a = arr.copy()
@@ -10,15 +20,10 @@ def descending(arr):
         a[i], a[min_idx] = a[min_idx], a[i]
         print(f"Langkah {i}: {a}")
     print(f"Hasil akhir Selection Sort: {[int(n) for n in a if n.is_integer()]}")
-    
-    formatted_result = []
-    for num in a:
-        if num.is_integer():
-            formatted_result.append(str(int(num)))  # Convert to int, then to string
-        else:
-            formatted_result.append(str(num))  # Keep as float, then to string
-    print(f"Hasil akhir Selection Sort (formatted): {formatted_result}")
+    formatted_result = formatted_selection_sort(a)
     return formatted_result
+    
+
 
 def ascending(arr):
     print("\nProses Selection Sort (ascending):")
@@ -32,14 +37,7 @@ def ascending(arr):
         a[i], a[min_idx] = a[min_idx], a[i]
         print(f"Langkah {i}: {a}")
     print(f"Hasil akhir Selection Sort: {a}")
-
-    formatted_result = []
-    for num in a:
-        if num.is_integer():
-            formatted_result.append(str(int(num)))  # Convert to int, then to string
-        else:
-            formatted_result.append(str(num))  # Keep as float, then to string
-    print(f"Hasil akhir Selection Sort (formatted): {formatted_result}")
+    formatted_result = formatted_selection_sort(a)
     return formatted_result
 
 
