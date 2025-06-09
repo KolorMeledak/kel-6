@@ -46,7 +46,7 @@ def selection_sort(data_list, mode):
             if perlu_update:
                 indeks_min_max_relatif = j
                 
-                print(f"     => Ditemukan elemen {tipe_elemen} baru di indeks {i + j} (nilai: {format_num(bagian_list[j])}).")
+                print(f"=> Ditemukan elemen {tipe_elemen} baru di indeks {i + j} (nilai: {format_num(bagian_list[j])}).")
 
         indeks_min_max_absolut = i + indeks_min_max_relatif
         
