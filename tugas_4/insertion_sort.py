@@ -3,8 +3,14 @@ def format_num(num):
         return str(int(num))
     return str(num)
 
-def format_list(numbers):
-    return f"[{', '.join([format_num(n) for n in numbers])}]"
+def format_list(numbers, kosong_index=None):
+    result = []
+    for i, num in enumerate(numbers):
+        if i == kosong_index:
+            result.append("....")
+        else:
+            result.append(format_num(num))
+    return f"[{', '.join(result)}]"
 
 def descending(arr):
     print("\n---------Proses Insertion Sort (descending):---------")
@@ -13,13 +19,23 @@ def descending(arr):
         key = a[i]
         j = i - 1
         langkah = 1
-        while j >= 0 and key > a[j]:
-            print(f"Bandingkan key={format_num(key)} dengan a[{j}]={format_num(a[j])}")
-            a[j + 1] = a[j]
-            print(f"Langkah {i}.{langkah}: {format_list(a)}")
-            langkah += 1
-            j -= 1
+        pergeseran = False
+        while j >= 0:
+            kondisi = "lebih besar" if key > a[j] else "tidak lebih besar"
+            print(f"Bandingkan key={format_num(key)} dengan a[{j}]={format_num(a[j])} → {kondisi}")
+            if key > a[j]:
+                a[j + 1] = a[j]
+                print(f"Langkah {i}.{langkah}: {format_list(a, j)}")
+                langkah += 1
+                j -= 1
+                pergeseran = True
+            else:
+                break
         a[j + 1] = key
+        if pergeseran:
+            print(f".... diganti {format_num(key)}")
+        else:
+            print(f"Key langsung ditempatkan tanpa pergeseran.")
         print(f"Setelah penyisipan {i}: {format_list(a)}\n")
     print(f"Hasil akhir Insertion Sort: {format_list(a)}")
 
@@ -30,13 +46,23 @@ def ascending(arr):
         key = a[i]
         j = i - 1
         langkah = 1
-        while j >= 0 and key < a[j]:
-            print(f"Bandingkan key={format_num(key)} dengan a[{j}]={format_num(a[j])}")
-            a[j + 1] = a[j]
-            print(f"Langkah {i}.{langkah}: {format_list(a)}")
-            langkah += 1
-            j -= 1
+        pergeseran = False
+        while j >= 0:
+            kondisi = "lebih kecil" if key < a[j] else "tidak lebih kecil"
+            print(f"Bandingkan key={format_num(key)} dengan a[{j}]={format_num(a[j])} → {kondisi}")
+            if key < a[j]:
+                a[j + 1] = a[j]
+                print(f"Langkah {i}.{langkah}: {format_list(a, j)}")
+                langkah += 1
+                j -= 1
+                pergeseran = True
+            else:
+                break
         a[j + 1] = key
+        if pergeseran:
+            print(f".... diganti {format_num(key)}")
+        else:
+            print(f"Key langsung ditempatkan tanpa pergeseran.")
         print(f"Setelah penyisipan {i}: {format_list(a)}\n")
     print(f"Hasil akhir Insertion Sort: {format_list(a)}")
 
