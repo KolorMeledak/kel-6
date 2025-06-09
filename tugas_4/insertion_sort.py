@@ -12,10 +12,12 @@ def descending(arr):
     for i in range(1, len(a)):
         key = a[i]
         j = i - 1
+        langkah = 1
         while j >= 0 and key > a[j]:
             a[j + 1] = a[j]
+            print(f"Langkah {i}.{langkah}: {format_list(a)}")
+            langkah += 1
             j -= 1
-            print(f"Langkah {i}.{j + 1}: {format_list(a)}")
         a[j + 1] = key
         print(f"Setelah penyisipan {i}: {format_list(a)}")
     print(f"Hasil akhir Insertion Sort: {format_list(a)}")
@@ -26,10 +28,12 @@ def ascending(arr):
     for i in range(1, len(a)):
         key = a[i]
         j = i - 1
+        langkah = 1
         while j >= 0 and key < a[j]:
             a[j + 1] = a[j]
+            print(f"Langkah {i}.{langkah}: {format_list(a)}")
+            langkah += 1
             j -= 1
-            print(f"Langkah {i}.{j + 1}: {format_list(a)}")
         a[j + 1] = key
         print(f"Setelah penyisipan {i}: {format_list(a)}")
     print(f"Hasil akhir Insertion Sort: {format_list(a)}")
@@ -55,7 +59,7 @@ while repeat:
         print(f"{i}. {opt}")
     
     while True:
-        choice = input("Masukkan pilihan (1/2): ").strip()
+        choice = input("Masukkan pilihan (1/2/3): ").strip()
         print("Data sebelum diurutkan:", format_list(arr))
         match choice:
             case '1':
