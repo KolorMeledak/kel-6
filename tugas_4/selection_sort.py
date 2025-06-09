@@ -11,7 +11,7 @@ def format_list(numbers):
 # ---------------------------------------------
 
 
-def selection_sort_shifting(data_list, mode):
+def selection_sort(data_list, mode):
     n = len(data_list)
     
     # Menentukan tipe elemen yang dicari berdasarkan mode
@@ -86,37 +86,40 @@ while repeat:
     option = {
         1: 'Pengurutan Naik', 
         2: 'Pengurutan Turun', 
-        3: 'Dua - Duanya'}
-    print("Pilih metode pengurutan:")
-    for i, opt in option.items():
-        print(f"{i}. {opt}")
+        3: 'Dua - Duanya'
+    }
+    while True:
+        print("Pilih metode pengurutan:")
+        for i, opt in option.items():
+            print(f"{i}. {opt}")
 
-    pilihan = input("Masukkan pilihan (1/2/3): ")
-    mode = None
-    match pilihan:
-        case '1':
+        pilihan = input("Masukkan pilihan (1/2/3): ")
+        mode = None
+        if pilihan == '1':
             mode = 'ascending'
-        case '2':
+        elif pilihan == '2':
             mode = 'descending'
-        case '3':
-            mode = 'ascending'
+        elif pilihan == '3':
             print("Pengurutan Naik:")
-            selection_sort_shifting(data.copy(), 'ascending')  # Gunakan .copy() agar data asli tidak berubah
+            selection_sort(data.copy(), 'ascending')
             print("\nPengurutan Turun:")
-            mode = 'descending'
-            selection_sort_shifting(data.copy(), 'descending')  # Gunakan .copy() agar data asli tidak berubah
-        case _:
+            selection_sort(data.copy(), 'descending')
+        else:
             print("Pilihan tidak valid. Silakan coba lagi.")
+            continue
 
-    if mode:
-        # Menggunakan format_list
-        print("Data sebelum diurutkan:", format_list(data))
-        print(f"Memulai Selection Sort dengan mode {mode}...")
-        print("\n\n")
-        selection_sort_shifting(data.copy(), mode) # Gunakan .copy() agar data asli tidak berubah
+        if mode:
+            print("Data sebelum diurutkan:", format_list(data))
+            print(f"Memulai Selection Sort dengan mode {mode}...")
+            print("\n\n")
+            selection_sort(data.copy(), mode)
+
+        cek_lagi = input("Apakah ingin mencoba cek lagi? (y/n): ").strip().lower()
+        if cek_lagi != 'y':
+            break
     
     while True:
-        choose = input("Apakah anda ingin mengulang kembali? (y/n): ").strip().lower()
+        choose = input("Apakah anda ingin mengulang program kembali? (y/n): ").strip().lower()
         if choose == 'y':
             repeat = True
             break
