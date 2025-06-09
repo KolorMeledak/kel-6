@@ -31,7 +31,7 @@ while repeat:
     print("===========Insertion Sort===========")
     try:
         arr = input("Masukkan angka yang ingin diurutkan (pisahkan dengan spasi): ")
-        arr = list(map(int, arr.split()))
+        arr = list(map(float, arr.split()))
     except ValueError:
         print("Input tidak valid. Silakan masukkan angka yang benar.")
         continue
@@ -58,6 +58,12 @@ while repeat:
             case _:
                 print("Pilihan tidak valid. Silakan coba lagi.")
     
-    choose = input("Apakah anda ingin mengulang kembali? (y/n): ").strip().lower()
-    if choose != 'y':
-        repeat = False
+    while True:
+        choose = input("Apakah anda ingin mengulang kembali? (y/n): ").strip().lower()
+        if choose == 'y':
+            break
+        elif choose == 'n':
+            repeat = False
+            break
+        else:
+            print("Pilihan tidak valid. Silakan coba lagi.")
