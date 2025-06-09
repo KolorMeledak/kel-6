@@ -59,7 +59,7 @@ while repeat:
         print(f"{i}. {opt}")
     
     while True:
-        choice = input("Masukkan pilihan (1/2): ").strip()
+        choice = input("Masukkan pilihan (1/2/3): ").strip()
         print("Data sebelum diurutkan:", format_list(arr))
         match choice:
             case '1':
