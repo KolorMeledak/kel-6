@@ -16,6 +16,8 @@ class BinarySearchTree:
             print(f"membuat root dengan nilai {key}")
         else:
             self._insert_recursive(self.root, key)
+    
+
 
     def _insert_recursive(self, current, key):
         print(f"{key} dibanding kan dengan {current.value}")
@@ -142,7 +144,18 @@ while True:
 
     if pilihan == '1':
         bulk_input = input("Masukkan data (pisahkan dengan koma (,) jika lebih dari satu): ")
-        bulk_list = list(map(lambda bulk_input: bulk_input.strip(), bulk_input.split(', ')))
+        # 83, 15, 67, 92, 34, 21, 76, 58, 49, 10        
+        def convert(value):
+            value = value.strip()
+            try:
+                if '.' in value:
+                    return float(value)
+                else:
+                    return int(value)
+            except ValueError:
+                return value
+        bulk_list = list(map(convert, bulk_input.split(',')))
+
         for item in bulk_list:
             if bst.search(item):
                 print(f"Item {item} sudah ada di dalam BST, dilewati.")
@@ -154,9 +167,10 @@ while True:
         bst.display()
 
     elif pilihan == '3':
-        print(f"Preorder  : {', '.join(bst.preorder_traversal())}")
-        print(f"Inorder   : {', '.join(bst.inorder_traversal())}")
-        print(f"Postorder : {', '.join(bst.postorder_traversal())}")
+        print(f"Preorder  : {', '.join(map(str, bst.preorder_traversal()))}")
+        print(f"Inorder   : {', '.join(map(str, bst.inorder_traversal()))}")
+        print(f"Postorder : {', '.join(map(str, bst.postorder_traversal()))}")
+
 
     elif pilihan == '4':
         bst.clear()
