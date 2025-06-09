@@ -125,6 +125,7 @@ while repeat:
             break
         elif choose == 'n':
             repeat = False
+            print("DAH MAS. DAH SELESAI PROGRAMNYA. TERIMA KASIH! 😘😘")
             break
         else:
             print("Pilihan tidak valid. Silakan coba lagi.")
