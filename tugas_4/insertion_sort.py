@@ -1,3 +1,11 @@
+def format_num(num):
+    if isinstance(num, float) and num.is_integer():
+        return str(int(num))
+    return str(num)
+
+def format_list(numbers):
+    return f"[{', '.join([format_num(n) for n in numbers])}]"
+
 def descending(arr):
     print("\nProses Insertion Sort (descending):")
     a = arr.copy()
@@ -7,10 +15,10 @@ def descending(arr):
         while j >= 0 and key > a[j]:
             a[j + 1] = a[j]
             j -= 1
-            print(f"Langkah {i}.{j + 1}: {a}")
+            print(f"Langkah {i}.{j + 1}: {format_list(a)}")
         a[j + 1] = key
-        print(f"Setelah penyisipan {i}: {a}")
-    print(f"Hasil akhir Insertion Sort: {a}")
+        print(f"Setelah penyisipan {i}: {format_list(a)}")
+    print(f"Hasil akhir Insertion Sort: {format_list(a)}")
 
 def ascending(arr):
     print("\nProses Insertion Sort (ascending):")
@@ -21,10 +29,10 @@ def ascending(arr):
         while j >= 0 and key < a[j]:
             a[j + 1] = a[j]
             j -= 1
-            print(f"Langkah {i}.{j + 1}: {a}")
+            print(f"Langkah {i}.{j + 1}: {format_list(a)}")
         a[j + 1] = key
-        print(f"Setelah penyisipan {i}: {a}")
-    print(f"Hasil akhir Insertion Sort: {a}")
+        print(f"Setelah penyisipan {i}: {format_list(a)}")
+    print(f"Hasil akhir Insertion Sort: {format_list(a)}")
 
 repeat = True
 while repeat:
@@ -47,7 +55,7 @@ while repeat:
     
     while True:
         choice = input("Masukkan pilihan (1/2): ").strip()
-        print("Data sebelum diurutkan:", arr)
+        print("Data sebelum diurutkan:", format_list(arr))
         match choice:
             case '1':
                 ascending(arr)
