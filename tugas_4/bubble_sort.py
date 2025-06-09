@@ -4,9 +4,12 @@ def descending(arr):
     n = len(a)
     for i in range(n):
         for j in range(0, n - i - 1):
+            print(f"Pengecekan antara {a[j]} dengan {a[j+1]}")
             if a[j] < a[j + 1]:
+                print(f"{a[j]} lebih kecil dari {a[j+1]}, terjadi penukaran")
                 a[j], a[j + 1] = a[j + 1], a[j]
             print(f"Langkah {i}.{j}: {a}")
+            print("\r")
     print(f"Hasil akhir Bubble Sort: {a}")
 
 def ascending(arr):
@@ -15,9 +18,12 @@ def ascending(arr):
     n = len(a)
     for i in range(n):
         for j in range(0, n - i - 1):
+            print(f"Pengecekan antara {a[j]} dengan {a[j+1]}")
             if a[j] > a[j + 1]:
+                print(f"{a[j]} lebih besar dari {a[j+1]}, terjadi penukaran")
                 a[j], a[j + 1] = a[j + 1], a[j]
             print(f"Langkah {i}.{j}: {a}")
+            print("\r")
     print(f"Hasil akhir Bubble Sort: {a}")
 
 repeat = True
@@ -54,4 +60,5 @@ while repeat:
     
     choose = input("Apakah anda ingin mengulang kembali? (y/n): ").strip().lower()
     if choose != 'y':
+        print("Terima Kasih!, Program Dihentikan.")
         repeat = False
