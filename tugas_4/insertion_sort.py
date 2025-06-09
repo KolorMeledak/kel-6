@@ -46,7 +46,8 @@ while repeat:
     
     option = {
         1: 'Pengurutan Naik',
-        2: 'Pengurutan Turun'
+        2: 'Pengurutan Turun',
+        3: 'Dua - Duanya'
     }
     
     print("Pilih metode pengurutan:")
@@ -61,6 +62,10 @@ while repeat:
                 ascending(arr)
                 break
             case '2':
+                descending(arr)
+                break
+            case '3':
+                ascending(arr)
                 descending(arr)
                 break
             case _:
