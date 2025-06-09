@@ -7,35 +7,37 @@ def format_list(numbers):
     return f"[{', '.join([format_num(n) for n in numbers])}]"
 
 def descending(arr):
-    print("\nProses Insertion Sort (descending):")
+    print("\n---------Proses Insertion Sort (descending):---------")
     a = arr.copy()
     for i in range(1, len(a)):
         key = a[i]
         j = i - 1
         langkah = 1
         while j >= 0 and key > a[j]:
+            print(f"Bandingkan key={format_num(key)} dengan a[{j}]={format_num(a[j])}")
             a[j + 1] = a[j]
             print(f"Langkah {i}.{langkah}: {format_list(a)}")
             langkah += 1
             j -= 1
         a[j + 1] = key
-        print(f"Setelah penyisipan {i}: {format_list(a)}")
+        print(f"Setelah penyisipan {i}: {format_list(a)}\n")
     print(f"Hasil akhir Insertion Sort: {format_list(a)}")
 
 def ascending(arr):
-    print("\nProses Insertion Sort (ascending):")
+    print("\n---------Proses Insertion Sort (ascending):---------")
     a = arr.copy()
     for i in range(1, len(a)):
         key = a[i]
         j = i - 1
         langkah = 1
         while j >= 0 and key < a[j]:
+            print(f"Bandingkan key={format_num(key)} dengan a[{j}]={format_num(a[j])}")
             a[j + 1] = a[j]
             print(f"Langkah {i}.{langkah}: {format_list(a)}")
             langkah += 1
             j -= 1
         a[j + 1] = key
-        print(f"Setelah penyisipan {i}: {format_list(a)}")
+        print(f"Setelah penyisipan {i}: {format_list(a)}\n")
     print(f"Hasil akhir Insertion Sort: {format_list(a)}")
 
 repeat = True
