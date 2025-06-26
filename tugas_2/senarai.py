@@ -1,3 +1,6 @@
+# KHAIRUL AKMAL
+# 1313624017
+
 from lib.linked import LinkedList
 
 ll = LinkedList()

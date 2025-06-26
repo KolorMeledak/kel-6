@@ -1,3 +1,6 @@
+# KHAIRUL AKMAL
+# 1313624017
+
 def format_num(num):
     if isinstance(num, float) and num.is_integer():
         return str(int(num))
