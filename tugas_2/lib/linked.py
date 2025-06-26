@@ -1,3 +1,6 @@
+# KHAIRUL AKMAL
+# 1313624017
+
 class Node: 
     def __init__(self, kode, nama): 
         self.kode = kode

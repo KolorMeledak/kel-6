@@ -1,3 +1,6 @@
+# KHAIRUL AKMAL
+# 1313624017
+
 def decimal_to_octal(number: float|int) -> str:
     print("Perhitungan Desimal ke Oktal")
     
