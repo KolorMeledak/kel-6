@@ -23,12 +23,12 @@ class LinkedList:
     def display(self):
         if self.head is None:
             return None
-        
         temp = self.head 
         while temp: 
             print(f"{temp.kode} = {temp.nama}")
             temp = temp.next
-            return True
+
+        return True 
         
     def search(self, key):
         temp = self.head

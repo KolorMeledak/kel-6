@@ -3,17 +3,20 @@ from lib.linked import LinkedList
 ll = LinkedList()
 
 def assign():
-    inputan = str(input("Masukkan kode dan nama sesuai dengan ketentuannya (Ex: AF, Aminudin Fikri) = "))
-    try:
-        inisial, nama = list(map(lambda name: name.strip(), inputan.split(','))) 
-        inisial = inisial.upper()
-        
-        ll.insert(inisial, nama)
-        print(f"Data {inisial}, {nama} berhasil ditambahkan.")
-        return
-    except ValueError:
-        print("Format salah! Gunakan format: INISIAL, Nama Panjang (Ex. AF, Aminudin Fikri)")
-        return
+    print("Masukkan kode dan nama sesuai dengan ketentuannya (Ex: AF, Aminudin Fikri)")
+    print("Masukkan kata 'selesai' untuk mengakhiri\n")
+
+    while True:
+        inputan = input().strip()
+        if inputan.lower() == 'selesai':
+            break
+        try:
+            inisial, nama = list(map(lambda name: name.strip(), inputan.split(','))) 
+            inisial = inisial.upper()
+            ll.insert(inisial, nama)
+            print(f"Data {inisial}, {nama} berhasil ditambahkan.")
+        except ValueError:
+            print("Format salah! Gunakan format: INISIAL, Nama Panjang (Ex. AF, Aminudin Fikri)")
 
 def remove():
     inputan = input("Masukkan kode yang perlu dihapus: ")
