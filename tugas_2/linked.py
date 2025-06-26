@@ -1,3 +1,6 @@
+# KHAIRUL AKMAL
+# 1313624017
+
 class Node: 
     def __init__(self, kode, nama): 
         self.kode = kode
@@ -23,12 +26,12 @@ class LinkedList:
     def display(self):
         if self.head is None:
             return None
-        
         temp = self.head 
         while temp: 
             print(f"{temp.kode} = {temp.nama}")
             temp = temp.next
-            return True
+
+        return True 
         
     def search(self, key):
         temp = self.head

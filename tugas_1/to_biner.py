@@ -1,3 +1,6 @@
+# KHAIRUL AKMAL
+# 1313624017
+
 def decimal_to_biner(number: float|int) -> str:
     print("Perhitungan Desimal ke Biner")
 
