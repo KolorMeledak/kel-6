@@ -1,7 +1,7 @@
 # KHAIRUL AKMAL
 # 1313624017
 
-from lib.linked import LinkedList
+from linked import LinkedList
 
 ll = LinkedList()
 
