@@ -1,107 +1,118 @@
-import matplotlib.pyplot as plt
+from fractions import Fraction
+from collections import deque
+import shutil
 
 class Node:
-    def __init__(self, key):
+    def __init__(self, key_str, key_value):
         self.left = None
         self.right = None
-        self.value = key
+        self.key_str = key_str
+        self.key_value = key_value
 
 class BinarySearchTree:
     def __init__(self):
         self.root = None
 
-    def insert(self, key):
+    def insert(self, key_str):
+        key_value = self._convert_to_number(key_str)
+        if key_value is None:
+            print(f"Input {key_str} tidak valid, dilewati.")
+            return
         if self.root is None:
-            self.root = Node(key)
-            print(f"membuat root dengan nilai {key}")
+            self.root = Node(key_str, key_value)
         else:
-            self._insert_recursive(self.root, key)
-    
+            self._insert_recursive(self.root, key_str, key_value)
 
-
-    def _insert_recursive(self, current, key):
-        print(f"{key} dibanding kan dengan {current.value}")
-        if key < current.value:
-            print(f"{key} < {current.value} → ke kiri")
+    def _insert_recursive(self, current, key_str, key_value):
+        if key_value < current.key_value:
             if current.left is None:
-                current.left = Node(key)
-                print(f"Node {key} ditambahkan sebagai anak kiri dari {current.value}\n")
+                current.left = Node(key_str, key_value)
             else:
-                self._insert_recursive(current.left, key)
-        elif key > current.value:
-            print(f"{key} > {current.value} → ke kanan")
+                self._insert_recursive(current.left, key_str, key_value)
+        elif key_value > current.key_value:
             if current.right is None:
-                current.right = Node(key)
-                print(f"Node {key} ditambahkan sebagai anak kanan dari {current.value}\n")
+                current.right = Node(key_str, key_value)
             else:
-                self._insert_recursive(current.right, key)
-
-    def search(self, key):
-        return self._search_recursive(self.root, key)
-
-    def _search_recursive(self, current, key):
-        if current is None:
-            return False
-        if key == current.value:
-            return True
-        elif key < current.value:
-            return self._search_recursive(current.left, key)
+                self._insert_recursive(current.right, key_str, key_value)
         else:
-            return self._search_recursive(current.right, key)
+            print(f"{key_str} sudah ada, dilewati.")
 
-    def _calculate_positions(self, node, level=0, x_offset=0, max_depth=1):
-        if node is None:
-            return
+    def _convert_to_number(self, value):
+        try:
+            if '/' in value:
+                return float(Fraction(value))
+            elif '.' in value:
+                return float(value)
+            else:
+                return float(int(value))
+        except ValueError:
+            return None
 
-        self._calculate_positions(node.left, level + 1, x_offset - 2**(max_depth - level - 1), max_depth)
-        self._calculate_positions(node.right, level + 1, x_offset + 2**(max_depth - level - 1), max_depth)
-
-        node.x = x_offset
-        node.y = -level
-
-    def _plot_tree(self, node, ax):
-        if node is None:
-            return
-
-        if node.left:
-            ax.plot([node.x, node.left.x], [node.y, node.left.y], 'k-', lw=1)
-            self._plot_tree(node.left, ax)
-
-        if node.right:
-            ax.plot([node.x, node.right.x], [node.y, node.right.y], 'k-', lw=1)
-            self._plot_tree(node.right, ax)
-
-        ax.text(node.x, node.y, str(node.value), ha='center', va='center', fontsize=10,
-                bbox=dict(facecolor='skyblue', edgecolor='black', boxstyle='circle'))
-
-    def display(self):
-        if self.root is None:
+    def display_tree(self):
+        if not self.root:
             print("BST kosong.")
             return
 
-        def _get_depth(node):
-            if node is None:
-                return 0
-            return max(_get_depth(node.left), _get_depth(node.right)) + 1
+        max_depth = self._get_depth(self.root)
+        terminal_width = shutil.get_terminal_size().columns
+        space_unit = 3  # jarak antar node
 
-        max_depth = _get_depth(self.root)
+        root_pos = terminal_width // 2
 
-        self._calculate_positions(self.root, max_depth=max_depth)
+        queue = deque()
+        queue.append((self.root, 0, root_pos))
 
-        fig,ax = plt.subplots(figsize=(10, 6))
-        self._plot_tree(self.root, ax)
+        levels = {}
+        node_refs = {}
 
-        ax.set_xlim(-2**max_depth, 2**max_depth)
-        ax.set_ylim(-max_depth, 1)
-        ax.axis('off')
-        plt.title('Binary Search Tree')
-        plt.show()
+        while queue:
+            node, depth, pos = queue.popleft()
+            if depth not in levels:
+                levels[depth] = []
+                node_refs[depth] = []
+            levels[depth].append((pos, node.key_str))
+            node_refs[depth].append((pos, node))
+
+            offset = max(2, int(space_unit * (2 ** (max_depth - depth - 1))))
+            offset = min(offset, 20)
+
+            if node.left:
+                queue.append((node.left, depth + 1, pos - offset))
+            if node.right:
+                queue.append((node.right, depth + 1, pos + offset))
+
+        last_depth = max(levels.keys())
+        for d in range(0, last_depth + 1):
+            line = [" "] * terminal_width
+            branches = [" "] * terminal_width
+            for pos, val in levels[d]:
+                idx = max(0, min(terminal_width - len(val), pos - len(val)//2))
+                for i, c in enumerate(val):
+                    if 0 <= idx+i < terminal_width:
+                        line[idx+i] = c
+
+            if d < last_depth:
+                for pos, node in node_refs[d]:
+                    if node.left:
+                        if pos-1 >= 0:
+                            branches[pos-1] = "/"
+                    if node.right:
+                        if pos+1 < terminal_width:
+                            branches[pos+1] = "\\"
+            print("".join(line))
+            if d < last_depth:
+                print("".join(branches))
+
+    def _get_depth(self, node):
+        if node is None:
+            return 0
+        return 1 + max(self._get_depth(node.left), self._get_depth(node.right))
 
     def preorder_traversal(self):
         result = []
         def _preorder(node):
             if node:
-                result.append(node.value)
+                result.append(node.key_str)
                 _preorder(node.left)
                 _preorder(node.right)
         _preorder(self.root)
@@ -112,7 +123,7 @@ class BinarySearchTree:
         def _inorder(node):
             if node:
                 _inorder(node.left)
-                result.append(node.value)
+                result.append(node.key_str)
                 _inorder(node.right)
         _inorder(self.root)
         return result
@@ -123,7 +134,7 @@ class BinarySearchTree:
             if node:
                 _postorder(node.left)
                 _postorder(node.right)
-                result.append(node.value)
+                result.append(node.key_str)
         _postorder(self.root)
         return result
 
@@ -131,53 +142,40 @@ class BinarySearchTree:
         self.root = None
         print("BST berhasil dikosongkan.")
 
+# Main Program
 bst = BinarySearchTree()
 
 while True:
     print("\n=== MENU BST ===")
     print("1. Tambahkan item")
-    print("2. Tapilkan BST")
-    print("3. Traversal BST (Preorder, Inorder, Postorder)")
+    print("2. Tampilkan BST")
+    print("3. Tampilkan Traversal (Preorder, Inorder, Postorder)")
     print("4. Kosongkan BST")
     print("5. Keluar")
     pilihan = input("Pilih menu (1-5): ")
 
     if pilihan == '1':
-        bulk_input = input("Masukkan data (pisahkan dengan koma (,) jika lebih dari satu): ")
-        # 83, 15, 67, 92, 34, 21, 76, 58, 49, 10        
-        def convert(value):
-            value = value.strip()
-            try:
-                if '.' in value:
-                    return float(value)
-                else:
-                    return int(value)
-            except ValueError:
-                return value
-        bulk_list = list(map(convert, bulk_input.split(',')))
+        bulk_input = input("Masukkan data (pisahkan koma): ")
+        bulk_list = [x.strip() for x in bulk_input.split(',') if x.strip() != '']
 
         for item in bulk_list:
-            if bst.search(item):
-                print(f"Item {item} sudah ada di dalam BST, dilewati.")
-            else:
-                bst.insert(item)
-        print("Semua data selesai diproses.")
-        
+            bst.insert(item)
+        print("Data selesai.")
+
     elif pilihan == '2':
-        bst.display()
+        bst.display_tree()
 
     elif pilihan == '3':
-        print(f"Preorder  : {', '.join(map(str, bst.preorder_traversal()))}")
-        print(f"Inorder   : {', '.join(map(str, bst.inorder_traversal()))}")
-        print(f"Postorder : {', '.join(map(str, bst.postorder_traversal()))}")
-
+        print(f"\nPreorder  : {', '.join(bst.preorder_traversal())}")
+        print(f"Inorder   : {', '.join(bst.inorder_traversal())}")
+        print(f"Postorder : {', '.join(bst.postorder_traversal())}")
 
     elif pilihan == '4':
         bst.clear()
 
     elif pilihan == '5':
-        print("Keluar dari program.")
+        print("Keluar program.")
         break
 
     else:
-        print("Pilihan tidak valid. Silakan coba lagi.")
+        print("Pilihan tidak valid.")
