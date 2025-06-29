@@ -33,11 +33,11 @@ while repeat:
       case 2:
          print(option[input_user])
          kota = input("Kota yang ingin dihapus: ").strip()
-         if kota in kota_list:
-            kota_list.remove(kota)
-            print(f"Kota {kota} berhasil dihapus (hanya 1 data pertama yang ditemukan)")
+         if kota_list and kota_list[-1] == kota:
+            kota_list.pop()
+            print(f"Kota {kota} berhasil dihapus dari urutan paling atas stack")
          else:
-            print(f"Kota {kota} tidak ditemukan")
+            print(f"Kota {kota} hanya dapat dihapus jika berada di urutan paling atas stack")
       case 3:
          print(option[input_user])
          kota = input("Kota yang dicari: ").strip()
