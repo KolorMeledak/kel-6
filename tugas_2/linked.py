@@ -48,14 +48,16 @@ class LinkedList:
 
     def delete(self, key):
         temp = self.head
-        
-        if temp and (temp.kode == key or temp.nama == key):
-            self.head = temp.next
-            temp = None
-            return True
-        
-        while temp and (temp.kode != key and temp.nama != key):
+        prev = None
+
+        while temp:
+            if temp.kode == key or temp.nama == key:
+                if prev is None:
+                    self.head = temp.next
+                else:
+                    prev.next = temp.next
+                return True
+            prev = temp
             temp = temp.next
-        
-        if temp is None:
-            return None
+
+        return None
