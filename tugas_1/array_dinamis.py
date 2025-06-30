@@ -1,60 +1,51 @@
-repeat = True
-# Program Stack dengan Input Dinamis hingga 'stop' dan Proses Pop hingga Error
-while repeat:
-        
-    stack = []
-    print("Masukkan nama ke dalam stack (ketik 'stop' untuk selesai):")
+stack = []
 
-    # Memasukkan elemen ke stack
-    k = 1
-    while True:
-        print(f"Nama ke-{k}: ", end='')
-        try:
-            nama = input().strip()
-            if not nama:
-                raise ValueError("Input tidak boleh kosong.")
-            k += 1
-            if nama.lower() == 'stop':
-                break
-            stack.append(nama)
-        except ValueError as e:
-            print(e)
+def tambah_data():
+    try:
+        nama = input("Masukkan nama ke dalam stack: ").strip()
+        if not nama:
+            raise ValueError("Input tidak boleh kosong.")
+        stack.append(nama)
+        print(f"{nama} berhasil ditambahkan ke stack.")
+    except ValueError as e:
+        print(e)
 
-    # Menampilkan hasil stack
-    print("\nStack saat ini :")
-    for item in reversed(stack):
-        print(item, end='\n')
+def pop_data():
+    if not stack:
+        print("Stack kosong")
+        return
+    nama = input("Masukkan nama yang ingin di-pop: ").strip()
+    if nama == stack[-1]:
+        removed = stack.pop()
+        print(f"{removed} berhasil dihapus dari stack.")
+    elif nama in stack:
+        print("Nama yang dimasukkan tidak berada pada posisi teratas. Penghapusan dibatalkan.")
+    else:
+        print("Tidak ada nama yang sesuai pada stack.")
 
-    # Proses pop hingga error
-    cek = True
-    while cek:
-        print("\nMelakukan proses pop hingga error")
-        
-        data_input = input("Masukkan nama yang ingin dihapus: ")
-        try:
-            if data_input == '':
-                raise ValueError("Input tidak boleh kosong")
-            if not stack:
-                raise ValueError("Stack kosong")
-            if data_input not in stack:
-                raise ValueError(f"Data '{data_input}' tidak ditemukan dalam stack.")
-            if data_input != stack[-1]:
-                raise ValueError(f"Data '{data_input}' bukan data teratas dalam stack.")
-            else:
-                stack.remove(data_input)
-                
-            print(f"{data_input} berhasil dihapus")
-        except ValueError as err:   
-            print(err)
-            print("Ulangi lagi? (y/n): ", end='')
-            ulang = input().strip().lower()
-            if ulang == 'y':
-                continue
-            else:
-                cek = False
-                break
-        
-    repeat = input("\nUlang apa kagak woi !?!??! (y/n): ").strip().lower() == 'y'
-    if not repeat:
+def tampilkan_data():
+    if not stack:
+        print("Stack kosong")
+    else:
+        print("Isi stack saat ini:")
+        for item in reversed(stack):
+            print(item)
+
+while True:
+    print("\nMenu:")
+    print("1. Tambah data")
+    print("2. Pop data (hanya bagian teratas)")
+    print("3. Tampilkan data")
+    print("4. Selesai")
+    pilihan = input("Pilih menu (1/2/3/4): ").strip()
+    if pilihan == '1':
+        tambah_data()
+    elif pilihan == '2':
+        pop_data()
+    elif pilihan == '3':
+        tampilkan_data()
+    elif pilihan == '4':
         print("Terima kasih telah menggunakan program ini.")
         break
+    else:
+        print("Pilihan tidak valid.")
