@@ -175,10 +175,11 @@ while repeat:
             mode = 'descending'
             selection_sort(data.copy(), mode, pivot_pilihan(option))
         elif pilihan == '3':
+            pivot = pivot_pilihan(option)
             print("\n--- Pengurutan Naik ---")
-            selection_sort(data.copy(), 'ascending'), pivot_pilihan(option)
+            selection_sort(data.copy(), 'ascending', pivot)
             print("\n--- Pengurutan Turun ---")
-            selection_sort(data.copy(), 'descending', pivot_pilihan(option))
+            selection_sort(data.copy(), 'descending', pivot)
         else:
             print("Pilihan tidak valid. Silakan coba lagi.")
             continue
